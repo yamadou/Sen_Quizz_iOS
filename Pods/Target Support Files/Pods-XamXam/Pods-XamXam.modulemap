@@ -1,0 +1,6 @@
+framework module Pods_XamXam {
+  umbrella header "Pods-XamXam-umbrella.h"
+
+  export *
+  module * { export * }
+}
