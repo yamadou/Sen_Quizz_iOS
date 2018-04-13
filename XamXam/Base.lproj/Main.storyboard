@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -137,7 +138,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywe-an-K05">
                                                     <rect key="frame" x="0.0" y="84" width="140" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -198,9 +199,9 @@
                                             <constraint firstAttribute="width" secondItem="Jqj-Wo-BcO" secondAttribute="height" multiplier="1:1" id="jTx-1y-cs0"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CROYANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZaF-Sl-Y5b">
-                                        <rect key="frame" x="105" y="40" width="115" height="25.5"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CROYANCE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZaF-Sl-Y5b">
+                                        <rect key="frame" x="105" y="41" width="188" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -222,6 +223,7 @@
                                         </state>
                                         <connections>
                                             <action selector="playDidTap:" destination="6xa-jq-oDW" eventType="touchUpInside" id="kUK-Hj-Wzz"/>
+                                            <segue destination="36h-A7-H9O" kind="show" identifier="PlayToQuizz" id="4iv-TT-BkB"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bi1-XT-rcd">
@@ -247,6 +249,7 @@
                                     <constraint firstAttribute="width" secondItem="Xfn-tW-kU2" secondAttribute="height" multiplier="49:51" id="OvA-db-nrz"/>
                                     <constraint firstItem="Bi1-XT-rcd" firstAttribute="width" secondItem="Bi1-XT-rcd" secondAttribute="height" multiplier="41:10" id="PB6-Hs-xkb"/>
                                     <constraint firstItem="jru-cg-QkK" firstAttribute="leading" secondItem="Jqj-Wo-BcO" secondAttribute="leading" id="QsV-Mx-2Rj"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZaF-Sl-Y5b" secondAttribute="trailing" constant="2" id="Zqr-wm-zCg"/>
                                     <constraint firstItem="wrW-ko-NFs" firstAttribute="leading" secondItem="Xfn-tW-kU2" secondAttribute="leading" constant="45" id="aNP-6F-YJ5"/>
                                     <constraint firstItem="wrW-ko-NFs" firstAttribute="top" secondItem="jru-cg-QkK" secondAttribute="bottom" constant="24" id="aa9-5G-dr2"/>
                                     <constraint firstItem="Bi1-XT-rcd" firstAttribute="leading" secondItem="wrW-ko-NFs" secondAttribute="leading" id="adm-O5-mFK"/>
@@ -274,11 +277,48 @@
                         <outlet property="alertView" destination="Xfn-tW-kU2" id="Ibg-xX-nRG"/>
                         <outlet property="playButton" destination="wrW-ko-NFs" id="o4p-V2-3RP"/>
                         <outlet property="submitQuestionButton" destination="Bi1-XT-rcd" id="xYY-Ev-Ptl"/>
+                        <outlet property="topicNameLabel" destination="ZaF-Sl-Y5b" id="Egt-Kl-18l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H2l-zW-1RE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2989.5999999999999" y="23.838080959520241"/>
+            <point key="canvasLocation" x="2940" y="33"/>
+        </scene>
+        <!--Quizz View Controller-->
+        <scene sceneID="LYt-ui-tFF">
+            <objects>
+                <viewController id="36h-A7-H9O" customClass="QuizzViewController" customModule="XamXam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5aP-Kp-Owd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hp2-lg-PYb">
+                                <rect key="frame" x="143" y="323" width="89" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sal-d1-ps4">
+                                <rect key="frame" x="16" y="20" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="dismiss:" destination="36h-A7-H9O" eventType="touchUpInside" id="QYO-9k-mNg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Hp2-lg-PYb" firstAttribute="centerY" secondItem="5aP-Kp-Owd" secondAttribute="centerY" id="Qq8-v8-tfB"/>
+                            <constraint firstItem="Hp2-lg-PYb" firstAttribute="centerX" secondItem="5aP-Kp-Owd" secondAttribute="centerX" id="rcK-ni-8dc"/>
+                            <constraint firstItem="Sal-d1-ps4" firstAttribute="top" secondItem="8aN-TO-BWs" secondAttribute="top" id="tTk-CU-ApD"/>
+                            <constraint firstItem="Sal-d1-ps4" firstAttribute="leading" secondItem="5aP-Kp-Owd" secondAttribute="leadingMargin" id="yQc-nD-yNL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8aN-TO-BWs"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Nu-K2-Rfx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3679" y="33"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7tk-ro-Lo6">

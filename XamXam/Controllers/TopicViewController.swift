@@ -29,16 +29,8 @@ class TopicViewController: UIViewController {
     
     // Mark: - Private
     private func fetchTopics() {
-        topicsRef.observe(.value, with: { snapshot in
-            
-            var topics: [Topic] = []
-            
-            for item in snapshot.children {
-                let topic = Topic(snapshot: item as! DataSnapshot)
-                topics.append(topic)
-            }
-            
-            self.topics = topics
+        WebService.fetchTopics( { topics in
+            self.topics = topics 
             self.topicsCollectionView.reloadData()
         })
     }
@@ -83,11 +75,13 @@ extension TopicViewController: UICollectionViewDelegate, UICollectionViewDelegat
         let selectedTopic = topics[index]
         
         let playOrSubmitQuestionVC = storyboard?.instantiateViewController(withIdentifier: "PlayOrSubmitQuestionVC") as! PlayOrSubmitQuestionViewController
+        
         playOrSubmitQuestionVC.view.backgroundColor = UIColor.clear
         playOrSubmitQuestionVC.modalPresentationStyle = .overCurrentContext
+        playOrSubmitQuestionVC.topicNameLabel.text = selectedTopic.name.uppercased()
+        playOrSubmitQuestionVC.topicUid = selectedTopic.uid
         
         self.present(playOrSubmitQuestionVC, animated: true, completion: nil)
-        
     }
 }
 

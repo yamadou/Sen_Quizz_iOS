@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseAuth
 
+
 struct User {
 
     var uid: String

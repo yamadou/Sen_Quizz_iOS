@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7827536E2080D019008D0630 /* PlayOrSubmitQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7827536D2080D019008D0630 /* PlayOrSubmitQuestionViewController.swift */; };
+		782753722080F35B008D0630 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782753712080F35B008D0630 /* Question.swift */; };
+		782753742080F6B6008D0630 /* QuizzViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782753732080F6B6008D0630 /* QuizzViewController.swift */; };
+		782753762080FC5B008D0630 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782753752080FC5B008D0630 /* WebService.swift */; };
+		789683BC208129850029F8D5 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789683BB208129850029F8D5 /* Response.swift */; };
 		78BBACA5207E305D00CF0C0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBACA4207E305D00CF0C0A /* AppDelegate.swift */; };
 		78BBACA7207E305D00CF0C0A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBACA6207E305D00CF0C0A /* LoginViewController.swift */; };
 		78BBACAA207E305D00CF0C0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78BBACA8207E305D00CF0C0A /* Main.storyboard */; };
@@ -25,6 +29,10 @@
 /* Begin PBXFileReference section */
 		5C3AE60717E4DF3EC0152F70 /* Pods_XamXam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XamXam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7827536D2080D019008D0630 /* PlayOrSubmitQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOrSubmitQuestionViewController.swift; sourceTree = "<group>"; };
+		782753712080F35B008D0630 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		782753732080F6B6008D0630 /* QuizzViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzViewController.swift; sourceTree = "<group>"; };
+		782753752080FC5B008D0630 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		789683BB208129850029F8D5 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		78BBACA1207E305D00CF0C0A /* XamXam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XamXam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BBACA4207E305D00CF0C0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78BBACA6207E305D00CF0C0A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -70,8 +78,17 @@
 				78BBACB9207E64E700CF0C0A /* WelcomeViewController.swift */,
 				78BBACBE207F979400CF0C0A /* TopicViewController.swift */,
 				7827536D2080D019008D0630 /* PlayOrSubmitQuestionViewController.swift */,
+				782753732080F6B6008D0630 /* QuizzViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		782753772080FC6F008D0630 /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				782753752080FC5B008D0630 /* WebService.swift */,
+			);
+			path = WebService;
 			sourceTree = "<group>";
 		};
 		788FFDE0207FD9080018DDE0 /* Views */ = {
@@ -108,6 +125,7 @@
 				7827536C2080BA9E008D0630 /* Controllers */,
 				78BBACBB207F802D00CF0C0A /* Models */,
 				788FFDE0207FD9080018DDE0 /* Views */,
+				782753772080FC6F008D0630 /* WebService */,
 				78BBACA8207E305D00CF0C0A /* Main.storyboard */,
 				78BBACAB207E305D00CF0C0A /* Assets.xcassets */,
 				78BBACAD207E305D00CF0C0A /* LaunchScreen.storyboard */,
@@ -122,6 +140,8 @@
 			children = (
 				78BBACBC207F803C00CF0C0A /* User.swift */,
 				78BBACC0207F9DA000CF0C0A /* Topic.swift */,
+				782753712080F35B008D0630 /* Question.swift */,
+				789683BB208129850029F8D5 /* Response.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -264,9 +284,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				782753762080FC5B008D0630 /* WebService.swift in Sources */,
 				78BBACBD207F803C00CF0C0A /* User.swift in Sources */,
 				78BBACC3207FAEC300CF0C0A /* TopicCollectionViewCell.swift in Sources */,
 				78BBACC1207F9DA000CF0C0A /* Topic.swift in Sources */,
+				789683BC208129850029F8D5 /* Response.swift in Sources */,
+				782753722080F35B008D0630 /* Question.swift in Sources */,
+				782753742080F6B6008D0630 /* QuizzViewController.swift in Sources */,
 				78BBACBA207E64E700CF0C0A /* WelcomeViewController.swift in Sources */,
 				78BBACA7207E305D00CF0C0A /* LoginViewController.swift in Sources */,
 				7827536E2080D019008D0630 /* PlayOrSubmitQuestionViewController.swift in Sources */,

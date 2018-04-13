@@ -10,11 +10,15 @@ import UIKit
 
 class PlayOrSubmitQuestionViewController: UIViewController {
 
+    // Mark: - Properties
+    var topicUid = ""
+    
     // Mark: - IBOutlet
     @IBOutlet weak var alertView: UIView!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var submitQuestionButton: UIButton!
-
+    @IBOutlet weak var topicNameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,6 +44,15 @@ class PlayOrSubmitQuestionViewController: UIViewController {
     // Mark: - Private
     @objc private func dismissAlert() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "PlayToQuizz" {
+            let destination = segue.destination as! QuizzViewController
+            destination.topicUid = topicUid
+        }
     }
     
 }
