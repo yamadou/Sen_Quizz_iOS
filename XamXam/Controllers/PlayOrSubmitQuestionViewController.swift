@@ -11,7 +11,7 @@ import UIKit
 class PlayOrSubmitQuestionViewController: UIViewController {
 
     // Mark: - Properties
-    var topicUid = ""
+    var topic: Topic?
     
     // Mark: - IBOutlet
     @IBOutlet weak var alertView: UIView!
@@ -51,7 +51,7 @@ class PlayOrSubmitQuestionViewController: UIViewController {
         
         if segue.identifier == "PlayToQuizz" {
             let destination = segue.destination as! QuizzViewController
-            destination.topicUid = topicUid
+            destination.topic = topic
         }
     }
     

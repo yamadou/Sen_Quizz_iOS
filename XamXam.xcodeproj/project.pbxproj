@@ -122,9 +122,9 @@
 			children = (
 				78BBACB8207E49CC00CF0C0A /* XamXam.entitlements */,
 				78BBACA4207E305D00CF0C0A /* AppDelegate.swift */,
-				7827536C2080BA9E008D0630 /* Controllers */,
 				78BBACBB207F802D00CF0C0A /* Models */,
 				788FFDE0207FD9080018DDE0 /* Views */,
+				7827536C2080BA9E008D0630 /* Controllers */,
 				782753772080FC6F008D0630 /* WebService */,
 				78BBACA8207E305D00CF0C0A /* Main.storyboard */,
 				78BBACAB207E305D00CF0C0A /* Assets.xcassets */,

@@ -21,7 +21,8 @@ class TopicCollectionViewCell: UICollectionViewCell {
             }
             
             topicTitle.text = model.name
-            topicImage.sd_setImage(with: URL(string: model.imageUrl), placeholderImage: UIImage(named: "placeholder.png"))
+            topicImage.image = UIImage(named: "\(model.imageName)")
+            //topicImage.sd_setImage(with: URL(string: model.imageUrl), placeholderImage: UIImage(named: "placeholder.png"))
             
             self.layer.masksToBounds = true
             self.layer.cornerRadius = 5
@@ -36,12 +37,12 @@ extension TopicCollectionViewCell {
     struct Model {
         let uid: String
         let name: String
-        let imageUrl: String
+        let imageName: String
         
         init(topic: Topic) {
             uid = topic.uid
             name = topic.name
-            imageUrl = topic.imageUrl
+            imageName = topic.imageName
         }
     }
 }

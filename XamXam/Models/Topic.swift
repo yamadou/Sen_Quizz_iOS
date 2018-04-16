@@ -12,14 +12,15 @@ import FirebaseDatabase
 struct Topic {
     var uid: String
     var name: String
-    var imageUrl: String
+    var imageName: String
     
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         uid = snapshotValue["id"] as! String
         name = snapshotValue["name"] as! String
-        imageUrl = "https://www.gettyimages.ie/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg"
-        //imageUrl = snapshotValue["image"] as! String
+        imageName = snapshotValue["image"] as! String
+        //imageName = "https://www.gettyimages.ie/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg"
+        
     }
 }
 

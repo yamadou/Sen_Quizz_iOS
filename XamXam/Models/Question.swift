@@ -10,17 +10,24 @@ import Foundation
 import FirebaseDatabase
 
 struct Question {
-    var uid: String
-    var goodAnswerUid: String
-    var topicUid: String
+    var uid = ""
+    var goodAnswerUid = ""
+    var topicUid = ""
     var question = ""
     
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
-        uid = snapshotValue["id"] as! String
-        goodAnswerUid = snapshotValue["id_good_answer"] as! String
-        topicUid = snapshotValue["id_theme"] as! String
-        question = snapshotValue["text_question"] as! String
-
+        
+        guard let uid = snapshotValue["id"],
+            let goodAnswerUid = snapshotValue["id_good_answer"],
+                let topicUid = snapshotValue["id_theme"],
+                    let question = snapshotValue["text_question"] else{
+            return
+        }
+        
+        self.uid = uid as! String
+        self.goodAnswerUid = goodAnswerUid as! String
+        self.topicUid = topicUid as! String
+        self.question = question as! String    
     }
 }

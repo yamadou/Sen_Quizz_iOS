@@ -24,14 +24,19 @@ class TopicViewController: UIViewController {
         topicsCollectionView.delegate = self
         topicsCollectionView.dataSource = self
         
-        fetchTopics()
+        fetchTopics(completion: {
+            DispatchQueue.main.async {
+                self.topicsCollectionView.reloadData()
+            }
+        })
+        
     }
     
     // Mark: - Private
-    private func fetchTopics() {
+    private func fetchTopics(completion: @escaping () -> Void) {
         WebService.fetchTopics( { topics in
-            self.topics = topics 
-            self.topicsCollectionView.reloadData()
+            self.topics = topics
+            completion()
         })
     }
 }
@@ -79,7 +84,7 @@ extension TopicViewController: UICollectionViewDelegate, UICollectionViewDelegat
         playOrSubmitQuestionVC.view.backgroundColor = UIColor.clear
         playOrSubmitQuestionVC.modalPresentationStyle = .overCurrentContext
         playOrSubmitQuestionVC.topicNameLabel.text = selectedTopic.name.uppercased()
-        playOrSubmitQuestionVC.topicUid = selectedTopic.uid
+        playOrSubmitQuestionVC.topic = selectedTopic
         
         self.present(playOrSubmitQuestionVC, animated: true, completion: nil)
     }
