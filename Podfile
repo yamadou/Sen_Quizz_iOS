@@ -10,7 +10,7 @@ target 'XamXam' do
   pod 'Firebase/Auth'
   pod 'FBSDKLoginKit'
   pod 'Firebase/Database'
-  pod 'RealmSwift'
   pod 'SDWebImage', '~> 4.0'
+  pod 'NotificationBannerSwift'
     
 end
