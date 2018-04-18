@@ -12,6 +12,7 @@
 		782753742080F6B6008D0630 /* QuizzViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782753732080F6B6008D0630 /* QuizzViewController.swift */; };
 		782753762080FC5B008D0630 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782753752080FC5B008D0630 /* WebService.swift */; };
 		789683BC208129850029F8D5 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789683BB208129850029F8D5 /* Response.swift */; };
+		789683BE208795D60029F8D5 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789683BD208795D60029F8D5 /* ScoreViewController.swift */; };
 		78BBACA5207E305D00CF0C0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBACA4207E305D00CF0C0A /* AppDelegate.swift */; };
 		78BBACA7207E305D00CF0C0A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBACA6207E305D00CF0C0A /* LoginViewController.swift */; };
 		78BBACAA207E305D00CF0C0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78BBACA8207E305D00CF0C0A /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		782753732080F6B6008D0630 /* QuizzViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzViewController.swift; sourceTree = "<group>"; };
 		782753752080FC5B008D0630 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		789683BB208129850029F8D5 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		789683BD208795D60029F8D5 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		78BBACA1207E305D00CF0C0A /* XamXam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XamXam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BBACA4207E305D00CF0C0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78BBACA6207E305D00CF0C0A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				78BBACBE207F979400CF0C0A /* TopicViewController.swift */,
 				7827536D2080D019008D0630 /* PlayOrSubmitQuestionViewController.swift */,
 				782753732080F6B6008D0630 /* QuizzViewController.swift */,
+				789683BD208795D60029F8D5 /* ScoreViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				78BBACC3207FAEC300CF0C0A /* TopicCollectionViewCell.swift in Sources */,
 				78BBACC1207F9DA000CF0C0A /* Topic.swift in Sources */,
 				789683BC208129850029F8D5 /* Response.swift in Sources */,
+				789683BE208795D60029F8D5 /* ScoreViewController.swift in Sources */,
 				782753722080F35B008D0630 /* Question.swift in Sources */,
 				782753742080F6B6008D0630 /* QuizzViewController.swift in Sources */,
 				78BBACBA207E64E700CF0C0A /* WelcomeViewController.swift in Sources */,

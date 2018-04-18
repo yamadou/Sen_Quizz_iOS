@@ -9,8 +9,10 @@ import UIKit
 import NotificationBannerSwift
 
 class QuizzViewController: UIViewController {
-
+ 
     // Mark: - Properties
+    var questionAskedCount = 0
+    var timer = Timer()
     var remainingTime = 0
     var topic: Topic?
     var currentQuestion: Question?
@@ -52,24 +54,23 @@ class QuizzViewController: UIViewController {
         })
         
         remainingTime = 60
-        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.m), userInfo: nil, repeats: true)
+        questionAskedCount = 0
     }
     
-    @objc private func m() {
-        remainingTime -= 1
-        
-        if(remainingTime < 10) {
-            remainingTimeLabel.textColor = UIColor.red
-        }
-        
-        if(remainingTime == 0) {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "mmm")
-            self.present(vc!, animated: false, completion: nil)
-        }
-        
-        remainingTimeLabel.text = "\(remainingTime)"
-    }
-
+//    override func viewWillAppear(_ animated: Bool) {
+//        remainingTime = 60
+//        questionAskedCount = 0
+//        questionCountLabel.text = "0/5"
+//        remainingTimeLabel.text = "\(remainingTime)"
+//        remainingTimeLabel.textColor = UIColor.darkGray
+//
+//
+//            generateNewQuestion()
+//            setUpQuestionLabelAndAnswersBtn()
+//            showQuestion()
+//
+//    }
+    
     // Mark: - @IBAction
     @IBAction func choiceADidTap(_ sender: Any) {
         buttonTapped = choiceAButton
@@ -114,12 +115,15 @@ class QuizzViewController: UIViewController {
         })
     }
     
-    // Mark: - Quizz Question & Responses
+    // Mark: - Quizz Questions & Responses Business Logic
     private func generateNewQuestion() {
         let rand = Int(arc4random_uniform(UInt32(filteredQuestions.count)))
         
         currentQuestion = filteredQuestions[rand]
         currentQuestionResponses = responses.filter{ $0.questionUid == currentQuestion!.uid}
+        
+        questionAskedCount += 1
+        questionCountLabel.text = "\(questionAskedCount)/5"
         
         filteredQuestions.remove(at: rand)
     }
@@ -127,7 +131,6 @@ class QuizzViewController: UIViewController {
     private func getGoodAnswerButton() -> UIButton {
         
         var idx = 0
-        // store the index of the good Answer in the variable idx
         for response in currentQuestionResponses {
             if response.uid == currentQuestion?.goodAnswerUid {
                 break
@@ -153,26 +156,55 @@ class QuizzViewController: UIViewController {
         goodAnswerButton = getGoodAnswerButton()
         
         if buttonTapped == goodAnswerButton {
-            showCorrectAnswer()
+            highlightCorrectAnswer()
             showBanner(title: "Bravo!", subtitle: "Super réponse!")
             
         } else {
-            buttonTapped.backgroundColor = UIColor.red.withAlphaComponent(0.7)
-            buttonTapped.layer.borderWidth = 0
-            
+            highlightUserAnswer()
             showBanner(title: "Dommage!", subtitle: "Pourtant, c'était facile!")
             
-            var timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.showCorrectAnswer), userInfo: nil, repeats: false)
+            var timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.highlightCorrectAnswer), userInfo: nil, repeats: false)
         }
     }
     
-    @objc private func showCorrectAnswer() {
+    private func highlightUserAnswer() {
+        buttonTapped.backgroundColor = UIColor.red.withAlphaComponent(0.7)
+        buttonTapped.layer.borderWidth = 0
+    }
+    
+    @objc private func highlightCorrectAnswer() {
         goodAnswerButton.backgroundColor = UIColor.green.withAlphaComponent(0.7)
         goodAnswerButton.layer.borderWidth = 0
     }
     
+    private func showScore() {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ScoreVC") as? ScoreViewController else {
+            return
+        }
+        
+        vc.topic = topic
+        self.present(vc, animated: false, completion: nil)
+    }
+    
     private func applyQuestionFilter() {
         filteredQuestions = questions.filter{ $0.topicUid == topic!.uid }
+    }
+    
+    // Mark: - Timer
+    @objc private func setTimer() {
+        
+        remainingTime -= 1
+        
+        if(remainingTime < 10) {
+            remainingTimeLabel.textColor = UIColor.red
+        }
+        
+        if(remainingTime == 0) {
+            timer.invalidate()
+            showScore()
+        }
+        
+        remainingTimeLabel.text = "\(remainingTime)"
     }
     
     // Mark: - UI Set Up
@@ -180,17 +212,19 @@ class QuizzViewController: UIViewController {
         questionLabel.isHidden = !questionLabel.isHidden
         answersStackView.isHidden = !answersStackView.isHidden
         activityIndicator.isAnimating ? activityIndicator.stopAnimating() : activityIndicator.startAnimating()
+        
+         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.setTimer), userInfo: nil, repeats: true)
     }
     
     
     private func setUpQuestionLabelAndAnswersBtn() {
-        questionLabel.text = currentQuestion?.question
-        
         choiceAButton.setTitle(currentQuestionResponses[0].response, for: .normal)
         choiceBbutton.setTitle(currentQuestionResponses[1].response, for: .normal)
         choiceCbutton.setTitle(currentQuestionResponses[2].response, for: .normal)
         choiceDButton.setTitle(currentQuestionResponses[3].response, for: .normal)
+        
         setUpButtons()
+        questionLabel.text = currentQuestion?.question
     }
     
     private func setUpButton(_ button: UIButton) {
@@ -214,7 +248,11 @@ class QuizzViewController: UIViewController {
     }
     
     private func setUpUI() {
-        topicLabel.text = topic!.name
+        
+        guard let topic = topic else {
+            return
+        }
+        topicLabel.text = topic.name
         
         setpUpView(timerView)
         setpUpView(questionCountView)
@@ -247,8 +285,12 @@ class QuizzViewController: UIViewController {
         // Generate & show a new question after banner's been dismissed
         banner?.dismiss()
         
-        generateNewQuestion()
-        setUpQuestionLabelAndAnswersBtn()
+        if questionAskedCount < 5 {
+            generateNewQuestion()
+            setUpQuestionLabelAndAnswersBtn()
+        } else {
+            showScore()
+        }
     }
 }
 
@@ -263,5 +305,4 @@ class CustomBannerColors: BannerColorsProtocol {
         }
     }
 }
-
 
