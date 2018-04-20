@@ -13,6 +13,7 @@
 		782753762080FC5B008D0630 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782753752080FC5B008D0630 /* WebService.swift */; };
 		789683BC208129850029F8D5 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789683BB208129850029F8D5 /* Response.swift */; };
 		789683BE208795D60029F8D5 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789683BD208795D60029F8D5 /* ScoreViewController.swift */; };
+		789683C0208A16CE0029F8D5 /* countDownSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 789683BF208A16CE0029F8D5 /* countDownSoundEffect.mp3 */; };
 		78BBACA5207E305D00CF0C0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBACA4207E305D00CF0C0A /* AppDelegate.swift */; };
 		78BBACA7207E305D00CF0C0A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BBACA6207E305D00CF0C0A /* LoginViewController.swift */; };
 		78BBACAA207E305D00CF0C0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78BBACA8207E305D00CF0C0A /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		782753752080FC5B008D0630 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		789683BB208129850029F8D5 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		789683BD208795D60029F8D5 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		789683BF208A16CE0029F8D5 /* countDownSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = countDownSoundEffect.mp3; sourceTree = "<group>"; };
 		78BBACA1207E305D00CF0C0A /* XamXam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XamXam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BBACA4207E305D00CF0C0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78BBACA6207E305D00CF0C0A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				788FFDE0207FD9080018DDE0 /* Views */,
 				7827536C2080BA9E008D0630 /* Controllers */,
 				782753772080FC6F008D0630 /* WebService */,
+				789683BF208A16CE0029F8D5 /* countDownSoundEffect.mp3 */,
 				78BBACA8207E305D00CF0C0A /* Main.storyboard */,
 				78BBACAB207E305D00CF0C0A /* Assets.xcassets */,
 				78BBACAD207E305D00CF0C0A /* LaunchScreen.storyboard */,
@@ -227,6 +230,7 @@
 			files = (
 				78BBACAF207E305D00CF0C0A /* LaunchScreen.storyboard in Resources */,
 				78BBACB7207E3F7400CF0C0A /* GoogleService-Info.plist in Resources */,
+				789683C0208A16CE0029F8D5 /* countDownSoundEffect.mp3 in Resources */,
 				78BBACAC207E305D00CF0C0A /* Assets.xcassets in Resources */,
 				78BBACAA207E305D00CF0C0A /* Main.storyboard in Resources */,
 			);

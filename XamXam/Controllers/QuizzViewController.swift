@@ -6,11 +6,16 @@
 //  Copyright © 2018 com.yamadou. All rights reserved.
 //
 import UIKit
+import AVFoundation
 import NotificationBannerSwift
 
 class QuizzViewController: UIViewController {
  
     // Mark: - Properties
+    var countDownSoundEffectIsPlaying = false
+    var countDownSoundEffect: AVAudioPlayer?
+    var score = 0
+    var hasAlreadyPlayed = false
     var questionAskedCount = 0
     var timer = Timer()
     var remainingTime = 0
@@ -53,23 +58,24 @@ class QuizzViewController: UIViewController {
             }
         })
         
-        remainingTime = 60
+        remainingTime = 15
         questionAskedCount = 0
+        
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        remainingTime = 60
-//        questionAskedCount = 0
-//        questionCountLabel.text = "0/5"
-//        remainingTimeLabel.text = "\(remainingTime)"
-//        remainingTimeLabel.textColor = UIColor.darkGray
-//
-//
-//            generateNewQuestion()
-//            setUpQuestionLabelAndAnswersBtn()
-//            showQuestion()
-//
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        if hasAlreadyPlayed {
+            resetGame()
+        }
+        
+        print("remaining Time: \(remainingTime)")
+    }
+    
+
+    override func viewDidDisappear(_ animated: Bool) {
+        hasAlreadyPlayed = true
+        countDownSoundEffect?.stop()
+    }
     
     // Mark: - @IBAction
     @IBAction func choiceADidTap(_ sender: Any) {
@@ -156,6 +162,7 @@ class QuizzViewController: UIViewController {
         goodAnswerButton = getGoodAnswerButton()
         
         if buttonTapped == goodAnswerButton {
+            score += 1
             highlightCorrectAnswer()
             showBanner(title: "Bravo!", subtitle: "Super réponse!")
             
@@ -177,17 +184,33 @@ class QuizzViewController: UIViewController {
         goodAnswerButton.layer.borderWidth = 0
     }
     
-    private func showScore() {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ScoreVC") as? ScoreViewController else {
+    @objc private func showScore() {
+        guard let scoreVC = storyboard?.instantiateViewController(withIdentifier: "ScoreVC") as? ScoreViewController else {
             return
         }
         
-        vc.topic = topic
-        self.present(vc, animated: false, completion: nil)
+        scoreVC.score = score
+        scoreVC.topic = topic
+        
+        self.present(scoreVC, animated: false, completion: nil)
     }
     
     private func applyQuestionFilter() {
         filteredQuestions = questions.filter{ $0.topicUid == topic!.uid }
+    }
+    
+    private func resetGame() {
+        applyQuestionFilter()
+        generateNewQuestion()
+        setUpQuestionLabelAndAnswersBtn()
+        
+        score = 0
+        remainingTime = 15
+        questionAskedCount = 1
+        var countDownSoundEffectIsPlaying = false
+        remainingTimeLabel.text = "\(remainingTime)"
+        remainingTimeLabel.textColor = UIColor.darkGray
+        questionCountLabel.text = "\(questionAskedCount)/5"
     }
     
     // Mark: - Timer
@@ -195,15 +218,15 @@ class QuizzViewController: UIViewController {
         
         remainingTime -= 1
         
-        if(remainingTime < 10) {
+        if remainingTime == 9 {
+            playCountDownSoundEffect()
             remainingTimeLabel.textColor = UIColor.red
         }
         
         if(remainingTime == 0) {
-            timer.invalidate()
-            showScore()
+            var timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.showScore), userInfo: nil, repeats: false)
         }
-        
+    
         remainingTimeLabel.text = "\(remainingTime)"
     }
     
@@ -269,6 +292,18 @@ class QuizzViewController: UIViewController {
         choiceBbutton.isEnabled = false
         choiceCbutton.isEnabled = false
         choiceDButton.isEnabled = false
+    }
+    
+    private func playCountDownSoundEffect() {
+        
+        let path = Bundle.main.path(forResource: "countDownSoundEffect.mp3", ofType:nil)!
+        let url = URL(fileURLWithPath: path)
+        do {
+            countDownSoundEffect = try AVAudioPlayer(contentsOf: url)
+            countDownSoundEffect?.play()
+        } catch {
+            // couldn't load file :(
+        }
     }
     
     // Mark: - Banner
