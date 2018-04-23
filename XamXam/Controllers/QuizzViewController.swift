@@ -12,12 +12,11 @@ import NotificationBannerSwift
 class QuizzViewController: UIViewController {
  
     // Mark: - Properties
-    var countDownSoundEffectIsPlaying = false
     var countDownSoundEffect: AVAudioPlayer?
     var score = 0
     var hasAlreadyPlayed = false
     var questionAskedCount = 0
-    var timer = Timer()
+    var gameTimer = Timer()
     var remainingTime = 0
     var topic: Topic?
     var currentQuestion: Question?
@@ -58,7 +57,7 @@ class QuizzViewController: UIViewController {
             }
         })
         
-        remainingTime = 15
+        remainingTime = 60
         questionAskedCount = 0
         
     }
@@ -67,14 +66,15 @@ class QuizzViewController: UIViewController {
         if hasAlreadyPlayed {
             resetGame()
         }
-        
-        print("remaining Time: \(remainingTime)")
     }
     
-
+    override func viewWillDisappear(_ animated: Bool) {
+        gameTimer.invalidate()
+        stopCountDownSoundEffect()
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         hasAlreadyPlayed = true
-        countDownSoundEffect?.stop()
     }
     
     // Mark: - @IBAction
@@ -205,12 +205,13 @@ class QuizzViewController: UIViewController {
         setUpQuestionLabelAndAnswersBtn()
         
         score = 0
-        remainingTime = 15
+        remainingTime = 60
         questionAskedCount = 1
-        var countDownSoundEffectIsPlaying = false
         remainingTimeLabel.text = "\(remainingTime)"
         remainingTimeLabel.textColor = UIColor.darkGray
         questionCountLabel.text = "\(questionAskedCount)/5"
+        
+        gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.setTimer), userInfo: nil, repeats: true)
     }
     
     // Mark: - Timer
@@ -223,11 +224,14 @@ class QuizzViewController: UIViewController {
             remainingTimeLabel.textColor = UIColor.red
         }
         
+         remainingTimeLabel.text = "\(remainingTime)"
+        
         if(remainingTime == 0) {
-            var timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.showScore), userInfo: nil, repeats: false)
+            let showScoreTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.showScore), userInfo: nil, repeats: false)
+            
+            gameTimer.invalidate()
+            remainingTimeLabel.text = "FIN"
         }
-    
-        remainingTimeLabel.text = "\(remainingTime)"
     }
     
     // Mark: - UI Set Up
@@ -236,7 +240,7 @@ class QuizzViewController: UIViewController {
         answersStackView.isHidden = !answersStackView.isHidden
         activityIndicator.isAnimating ? activityIndicator.stopAnimating() : activityIndicator.startAnimating()
         
-         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.setTimer), userInfo: nil, repeats: true)
+         gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.setTimer), userInfo: nil, repeats: true)
     }
     
     
@@ -306,6 +310,13 @@ class QuizzViewController: UIViewController {
         }
     }
     
+    private func stopCountDownSoundEffect() {
+        guard let soundEffect = countDownSoundEffect else {
+            return
+        }
+        soundEffect.stop()
+    }
+    
     // Mark: - Banner
     private func showBanner(title: String, subtitle: String) {
         
@@ -324,6 +335,7 @@ class QuizzViewController: UIViewController {
             generateNewQuestion()
             setUpQuestionLabelAndAnswersBtn()
         } else {
+            gameTimer.invalidate()
             showScore()
         }
     }

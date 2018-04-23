@@ -15,6 +15,7 @@ struct User {
     var uid: String
     var displayName: String?
     var photoUrl: URL?
+    var email: String?
 
     init(authData: FirebaseAuth.User) {
         uid = authData.uid
@@ -23,6 +24,9 @@ struct User {
         }
         if let photoUrl = authData.photoURL {
             self.photoUrl = photoUrl
+        }
+        if let email = authData.email {
+            self.email = email
         }
     }
 }

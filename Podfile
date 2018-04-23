@@ -8,6 +8,7 @@ target 'XamXam' do
   # Pods for XamXam
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
   pod 'FBSDKLoginKit'
   pod 'Firebase/Database'
   pod 'SDWebImage', '~> 4.0'

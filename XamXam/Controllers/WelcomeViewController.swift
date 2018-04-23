@@ -31,7 +31,18 @@ class WelcomeViewController: UIViewController {
         Auth.auth().addStateDidChangeListener { auth, user in
             guard let user = user else { return }
             self.user = User(authData: user)
+            print("HELOOOOOOOOOOOOOOOOO")
+            print("Email: \(user.email), phone#: \(user.phoneNumber) \(user.displayName)")
         }
     }
     
+    @IBAction func logout(_ sender: Any) {
+        
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
 }

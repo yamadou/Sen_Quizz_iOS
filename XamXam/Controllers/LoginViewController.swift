@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 import FirebaseAuth
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
@@ -21,10 +23,13 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loginButton.delegate = self
-    
         UIApplication.shared.statusBarStyle = .default
+        
+        //Facebook Login button
+        loginButton.delegate = self
+        
+        // Google Sign In
+        GIDSignIn.sharedInstance().uiDelegate = self
         
         Auth.auth().addStateDidChangeListener() { auth, user in
             if user != nil {
@@ -35,7 +40,7 @@ class LoginViewController: UIViewController {
     
 }
 
-
+// Mark: - Facebook Login
 extension LoginViewController: FBSDKLoginButtonDelegate {
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
@@ -58,6 +63,9 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
         }
     }
 }
+
+// Mark: - Google Login
+extension LoginViewController: GIDSignInUIDelegate {}
 
 // Logging Out
 //let firebaseAuth = Auth.auth()
