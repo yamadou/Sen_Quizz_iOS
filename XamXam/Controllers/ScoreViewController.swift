@@ -13,6 +13,7 @@ class ScoreViewController: UIViewController {
     //Mark: - Property
     var score = 0
     var topic: Topic?
+    var user: User!
     
     // Mark: - IBOutlet
     @IBOutlet weak var rankingButton: UIButton!

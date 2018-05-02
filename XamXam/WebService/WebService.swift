@@ -58,6 +58,23 @@ class WebService {
             completion(responses)
         })
     }
+    
+    // Game Stats
+    class func fetchGameStats(_ completion: @escaping ([GameStat]) -> Void) {
+        let questionsRef = Database.database().reference(withPath: "scores").queryOrdered(byChild: "name_theme")
+        
+        questionsRef.observe(.value, with: { snapshot in
+            
+            var gameStats: [GameStat] = []
+            
+            for snap in snapshot.children {
+                let gameStat = GameStat(snapshot: snap as! DataSnapshot)
+                gameStats.append(gameStat)
+            }
+            
+            completion(gameStats)
+        })
+    }
 }
 
 

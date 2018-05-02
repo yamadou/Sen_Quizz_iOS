@@ -18,6 +18,8 @@ struct Response {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         uid = snapshotValue["id"] as! String
         questionUid = snapshotValue["id_question"] as! String
-        response = snapshotValue["text_response"] as! String
+        if let response = snapshotValue["text_response"] {
+            self.response = response as! String
+        }
     }
 }

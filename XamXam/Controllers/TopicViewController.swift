@@ -12,6 +12,7 @@ import FirebaseDatabase
 class TopicViewController: UIViewController {
 
     // Mark: - Properties
+    var user: User!
     var topics: [Topic] = []
     let topicsRef = Database.database().reference(withPath: "themes")
     
@@ -30,6 +31,7 @@ class TopicViewController: UIViewController {
             }
         })
         
+        print("Useeeeeeeeeeer: \(user.displayName)")
     }
     
     // Mark: - Private
@@ -39,6 +41,7 @@ class TopicViewController: UIViewController {
             completion()
         })
     }
+    
 }
 
 
@@ -85,6 +88,7 @@ extension TopicViewController: UICollectionViewDelegate, UICollectionViewDelegat
         playOrSubmitQuestionVC.modalPresentationStyle = .overCurrentContext
         playOrSubmitQuestionVC.topicNameLabel.text = selectedTopic.name.uppercased()
         playOrSubmitQuestionVC.topic = selectedTopic
+        playOrSubmitQuestionVC.user = user
         
         self.present(playOrSubmitQuestionVC, animated: true, completion: nil)
     }

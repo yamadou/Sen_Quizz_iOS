@@ -11,6 +11,7 @@ import UIKit
 class PlayOrSubmitQuestionViewController: UIViewController {
 
     // Mark: - Properties
+    var user: User!
     var topic: Topic?
     
     // Mark: - IBOutlet
@@ -52,6 +53,7 @@ class PlayOrSubmitQuestionViewController: UIViewController {
         if segue.identifier == "PlayToQuizz" {
             let destination = segue.destination as! QuizzViewController
             destination.topic = topic
+            destination.user = user
         }
     }
     

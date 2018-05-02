@@ -31,11 +31,10 @@ class WelcomeViewController: UIViewController {
         Auth.auth().addStateDidChangeListener { auth, user in
             guard let user = user else { return }
             self.user = User(authData: user)
-            print("HELOOOOOOOOOOOOOOOOO")
-            print("Email: \(user.email), phone#: \(user.phoneNumber) \(user.displayName)")
         }
     }
     
+    // Mark: - IBAction
     @IBAction func logout(_ sender: Any) {
         
         let firebaseAuth = Auth.auth()
@@ -43,6 +42,14 @@ class WelcomeViewController: UIViewController {
             try firebaseAuth.signOut()
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
+        }
+    }
+    
+    // Mark: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == WelcomeToTopic {
+            let destination = segue.destination as! TopicViewController
+            destination.user = user
         }
     }
 }

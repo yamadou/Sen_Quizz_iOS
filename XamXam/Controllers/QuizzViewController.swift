@@ -12,6 +12,7 @@ import NotificationBannerSwift
 class QuizzViewController: UIViewController {
  
     // Mark: - Properties
+    var user: User!
     var countDownSoundEffect: AVAudioPlayer?
     var score = 0
     var hasAlreadyPlayed = false
@@ -185,12 +186,23 @@ class QuizzViewController: UIViewController {
     }
     
     @objc private func showScore() {
+        
+        let playTime = 60 - remainingTime
+        
+        let gameStats = GameStat(playerName: user.displayName!,
+                                  topic: (topic?.name)!,
+                                  score: score,
+                                  playTime: playTime,
+                                  profileImageUrl: nil)
+        gameStats.saveStatsFor(user)
+        
         guard let scoreVC = storyboard?.instantiateViewController(withIdentifier: "ScoreVC") as? ScoreViewController else {
             return
         }
         
         scoreVC.score = score
         scoreVC.topic = topic
+        scoreVC.user = user
         
         self.present(scoreVC, animated: false, completion: nil)
     }
