@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import AVFoundation
+import FirebaseDatabase
 
 class WelcomeViewController: UIViewController {
 

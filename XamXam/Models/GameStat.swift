@@ -10,12 +10,12 @@ import Foundation
 import FirebaseDatabase
 
 struct GameStat {
-    var date = Date().toString(dateFormat: "dd-MMMM-yyy")
+    var date = Date().toString(dateFormat: "dd/MM/yyy")
     var time = Date().toString(dateFormat: "HH:mm")
-    var playerName: String?
-    var topic: String?
-    var score: Int?
-    var playTime: Int?
+    var playerName = "No name"
+    var topic = ""
+    var score = 0
+    var playTime = 0
     var profileImageUrl: String?
     
     init(playerName: String, topic: String, score: Int, playTime: Int, profileImageUrl: String?) {

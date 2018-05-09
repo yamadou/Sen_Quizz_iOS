@@ -32,7 +32,6 @@ class PlayOrSubmitQuestionViewController: UIViewController {
         submitQuestionButton.layer.cornerRadius = 22.5
         
         addTapGestureTo(view: self.view, selector: #selector(dismissAlert))
-        
     }
     
     // Mark: - IBActions
@@ -40,6 +39,12 @@ class PlayOrSubmitQuestionViewController: UIViewController {
     }
     
     @IBAction func submitQuestionDidTap(_ sender: Any) {
+        let submitQuestionVC = storyboard?.instantiateViewController(withIdentifier: "SubmitQuestionVC") as! SubmitQuestionViewController
+        submitQuestionVC.topic = topic
+        submitQuestionVC.view.backgroundColor = UIColor.clear
+        submitQuestionVC.modalPresentationStyle = .overCurrentContext
+        
+        self.present(submitQuestionVC, animated: false, completion: nil)
     }
     
     // Mark: - Private

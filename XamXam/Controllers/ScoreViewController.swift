@@ -54,10 +54,18 @@ class ScoreViewController: UIViewController {
             })
         })
     }
-    
+
     @IBAction func rankingDidTap(_ sender: Any) {
     }
     
     @IBAction func quitDidTap(_ sender: Any) {
+    }
+    
+    // Mark: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ScoreToRanking" {
+            let destination = segue.destination as! RankingViewController
+            destination.topic = (topic?.name)!
+        }
     }
 }

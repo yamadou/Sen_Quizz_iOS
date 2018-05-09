@@ -30,8 +30,7 @@ class TopicViewController: UIViewController {
                 self.topicsCollectionView.reloadData()
             }
         })
-        
-        print("Useeeeeeeeeeer: \(user.displayName)")
+    
     }
     
     // Mark: - Private

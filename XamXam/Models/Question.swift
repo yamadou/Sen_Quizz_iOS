@@ -30,4 +30,25 @@ struct Question {
         self.topicUid = topicUid as! String
         self.question = question as! String    
     }
+    
+    init(topicUid: String, question: String) {
+        self.topicUid = topicUid
+        self.question = question
+    }
+    
+    mutating func submitQuestion() -> String {
+        var questionRef = Database.database().reference(withPath: "questions")
+            .childByAutoId()
+        questionRef.setValue([ "id": questionRef.key,
+                               "id_good_answer": goodAnswerUid,
+                               "id_theme": topicUid,
+                               "text_question": question])
+        
+        self.uid = questionRef.key
+        return questionRef.key
+    }
+    
+    func update(goodAnswerUid: String) {
+        Database.database().reference(withPath: "questions").child(uid).updateChildValues(["id_good_answer": goodAnswerUid])
+    }
 }

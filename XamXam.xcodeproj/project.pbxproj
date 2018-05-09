@@ -11,6 +11,8 @@
 		780B70F22099F5E9009C076C /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780B70F12099F5E9009C076C /* extension.swift */; };
 		780B70F4209A1FC1009C076C /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780B70F3209A1FC0009C076C /* RankingViewController.swift */; };
 		780B70F6209A3267009C076C /* RankingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780B70F5209A3267009C076C /* RankingCell.swift */; };
+		780B70F8209B3E51009C076C /* RankingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780B70F7209B3E51009C076C /* RankingDetailViewController.swift */; };
+		780B70FA20A207A8009C076C /* SubmitQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780B70F920A207A8009C076C /* SubmitQuestionViewController.swift */; };
 		7827536E2080D019008D0630 /* PlayOrSubmitQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7827536D2080D019008D0630 /* PlayOrSubmitQuestionViewController.swift */; };
 		782753722080F35B008D0630 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782753712080F35B008D0630 /* Question.swift */; };
 		782753742080F6B6008D0630 /* QuizzViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782753732080F6B6008D0630 /* QuizzViewController.swift */; };
@@ -38,6 +40,8 @@
 		780B70F12099F5E9009C076C /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		780B70F3209A1FC0009C076C /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RankingViewController.swift; path = /Users/YamadouTraore/Desktop/XamXam/XamXam/RankingViewController.swift; sourceTree = "<absolute>"; };
 		780B70F5209A3267009C076C /* RankingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCell.swift; sourceTree = "<group>"; };
+		780B70F7209B3E51009C076C /* RankingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingDetailViewController.swift; sourceTree = "<group>"; };
+		780B70F920A207A8009C076C /* SubmitQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitQuestionViewController.swift; sourceTree = "<group>"; };
 		7827536D2080D019008D0630 /* PlayOrSubmitQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOrSubmitQuestionViewController.swift; sourceTree = "<group>"; };
 		782753712080F35B008D0630 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		782753732080F6B6008D0630 /* QuizzViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzViewController.swift; sourceTree = "<group>"; };
@@ -140,8 +144,10 @@
 				788FFDE0207FD9080018DDE0 /* Views */,
 				7827536C2080BA9E008D0630 /* Controllers */,
 				782753772080FC6F008D0630 /* WebService */,
-				780B70F12099F5E9009C076C /* extension.swift */,
 				780B70F3209A1FC0009C076C /* RankingViewController.swift */,
+				780B70F7209B3E51009C076C /* RankingDetailViewController.swift */,
+				780B70F920A207A8009C076C /* SubmitQuestionViewController.swift */,
+				780B70F12099F5E9009C076C /* extension.swift */,
 				789683BF208A16CE0029F8D5 /* countDownSoundEffect.mp3 */,
 				78BBACA8207E305D00CF0C0A /* Main.storyboard */,
 				78BBACAB207E305D00CF0C0A /* Assets.xcassets */,
@@ -315,8 +321,10 @@
 				782753722080F35B008D0630 /* Question.swift in Sources */,
 				782753742080F6B6008D0630 /* QuizzViewController.swift in Sources */,
 				78BBACBA207E64E700CF0C0A /* WelcomeViewController.swift in Sources */,
+				780B70F8209B3E51009C076C /* RankingDetailViewController.swift in Sources */,
 				78BBACA7207E305D00CF0C0A /* LoginViewController.swift in Sources */,
 				7827536E2080D019008D0630 /* PlayOrSubmitQuestionViewController.swift in Sources */,
+				780B70FA20A207A8009C076C /* SubmitQuestionViewController.swift in Sources */,
 				78BBACBF207F979400CF0C0A /* TopicViewController.swift in Sources */,
 				78BBACA5207E305D00CF0C0A /* AppDelegate.swift in Sources */,
 				780B70F4209A1FC1009C076C /* RankingViewController.swift in Sources */,

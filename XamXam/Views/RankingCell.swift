@@ -12,6 +12,7 @@ class RankingCell: UITableViewCell {
 
     @IBOutlet weak var playerNameLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var rankCountLabel: UILabel!
     @IBOutlet weak internal var profileImageView: UIImageView!
     @IBOutlet weak internal var medalImageView: UIImageView!
     
@@ -32,6 +33,12 @@ class RankingCell: UITableViewCell {
                 medalImageView.image = UIImage(named: "bronzeMedal")
             } else {
                 medalImageView.image = UIImage(named: "")
+                rankCountLabel.text = "\(model.index + 1)"
+                rankCountLabel.isHidden = false
+            }
+            
+            if let profileImagePath = model.profileImageUrl {
+                profileImageView.load(url: URL(string: profileImagePath)!)
             }
             
             profileImageView.layer.borderWidth = 1.0
@@ -53,17 +60,14 @@ extension RankingCell {
     struct Model {
         var playerName = "No Name"
         var score = 0
-        var profileImageUrl = ""
+        var profileImageUrl: String?
         var index = 0
         
         init(stat: GameStat, index: Int) {
             self.index = index
-            if let playerName = stat.playerName {
-                self.playerName = playerName
-            }
-            if let score = stat.score {
-                self.score = score
-            }
+            self.playerName = stat.playerName
+            self.score = stat.score
+            
             if let profileImageUrl = stat.profileImageUrl {
                 self.profileImageUrl = profileImageUrl
             }
