@@ -8,8 +8,10 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 import FirebaseAuth
 import AVFoundation
+import FBSDKLoginKit
 import FirebaseDatabase
 
 class WelcomeViewController: UIViewController {
@@ -30,20 +32,29 @@ class WelcomeViewController: UIViewController {
         playButton.layer.cornerRadius = 35
         
         Auth.auth().addStateDidChangeListener { auth, user in
-            guard let user = user else { return }
+            guard let user = user else {
+                 let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+                
+                // Programmaticaly logout from facebook
+                FBSDKAccessToken.setCurrent(nil)
+                FBSDKProfile.setCurrent(nil)
+                FBSDKLoginManager().logOut()
+                
+                // Sign Out of Google after being authenticated
+                GIDSignIn.sharedInstance().signOut()
+                
+                self.present(loginVC, animated: false, completion: nil)
+                
+                return
+            }
+            
             self.user = User(authData: user)
         }
     }
     
     // Mark: - IBAction
     @IBAction func logout(_ sender: Any) {
-        
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
+        showLogoutActionSheet()
     }
     
     // Mark: - Navigation
@@ -53,4 +64,31 @@ class WelcomeViewController: UIViewController {
             destination.user = user
         }
     }
+    
+    // Mark: Private
+    private func showLogoutActionSheet() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let logout = UIAlertAction(title: "Déconnexion", style: .destructive, handler: { _ in
+            self.disconnectUser()
+        })
+        let cancel = UIAlertAction(title: "Annuler", style: .cancel)
+        
+        alertController.addAction(logout)
+        alertController.addAction(cancel)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func disconnectUser() {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
 }
+
+

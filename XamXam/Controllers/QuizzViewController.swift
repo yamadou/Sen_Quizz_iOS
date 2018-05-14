@@ -42,6 +42,10 @@ class QuizzViewController: UIViewController {
     @IBOutlet weak var choiceDButton: UIButton!
     @IBOutlet weak var answersStackView: UIStackView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var choiceAView: UIView!
+    @IBOutlet weak var choiceBView: UIView!
+    @IBOutlet weak var choiceCView: UIView!
+    @IBOutlet weak var choiceDView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -267,10 +271,10 @@ class QuizzViewController: UIViewController {
     }
     
     private func setUpButton(_ button: UIButton) {
-        button.layer.borderWidth = 2
+        //button.layer.borderWidth = 2
         button.isEnabled = true
         button.backgroundColor = UIColor.white
-        button.layer.borderColor = UIColor(red: 22/255, green: 67/255, blue: 112/255, alpha: 1).cgColor
+        //button.layer.borderColor = UIColor(red: 22/255, green: 67/255, blue: 112/255, alpha: 1).cgColor
     }
     
     private func setUpButtons() {
@@ -286,6 +290,13 @@ class QuizzViewController: UIViewController {
         view.layer.borderColor = UIColor.lightGray.cgColor
     }
     
+    private func setUpViewOf(responseView: UIView) {
+        responseView.layer.masksToBounds = true
+        responseView.layer.cornerRadius = 15
+        responseView.layer.borderWidth = 2
+        responseView.layer.borderColor = UIColor(red: 22/255, green: 67/255, blue: 112/255, alpha: 1).cgColor
+    }
+    
     private func setUpUI() {
         
         guard let topic = topic else {
@@ -295,6 +306,11 @@ class QuizzViewController: UIViewController {
         
         setpUpView(timerView)
         setpUpView(questionCountView)
+        
+        setUpViewOf(responseView: choiceAView)
+        setUpViewOf(responseView: choiceBView)
+        setUpViewOf(responseView: choiceCView)
+        setUpViewOf(responseView: choiceDView)
         
         setUpButtons()
         

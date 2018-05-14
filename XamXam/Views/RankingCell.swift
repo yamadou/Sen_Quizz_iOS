@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class RankingCell: UITableViewCell {
 
@@ -25,6 +26,8 @@ class RankingCell: UITableViewCell {
             playerNameLabel.text = model.playerName
             scoreLabel.text = "\(model.score) PTS"
             
+            rankCountLabel.isHidden = true
+            
             if model.index == 0 {
                 medalImageView.image = UIImage(named: "goldMedal")
             } else if model.index == 1 {
@@ -37,8 +40,12 @@ class RankingCell: UITableViewCell {
                 rankCountLabel.isHidden = false
             }
             
-            if let profileImagePath = model.profileImageUrl {
-                profileImageView.load(url: URL(string: profileImagePath)!)
+            if
+                let profileImagePath = model.profileImageUrl,
+                let profileImageUrl = URL(string: profileImagePath) {
+                    profileImageView.sd_setImage(with: profileImageUrl)
+            } else {
+                profileImageView.image = UIImage(named: "profileImage")
             }
             
             profileImageView.layer.borderWidth = 1.0

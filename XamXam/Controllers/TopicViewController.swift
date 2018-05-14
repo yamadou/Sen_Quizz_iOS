@@ -19,6 +19,7 @@ class TopicViewController: UIViewController {
     // Mark: - IBOutlets
     @IBOutlet weak var topicsCollectionView: UICollectionView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,9 +29,10 @@ class TopicViewController: UIViewController {
         fetchTopics(completion: {
             DispatchQueue.main.async {
                 self.topicsCollectionView.reloadData()
+                
+                self.activityIndicator.stopAnimating()
             }
         })
-    
     }
     
     // Mark: - Private

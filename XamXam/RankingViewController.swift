@@ -16,6 +16,7 @@ class RankingViewController: UIViewController {
     // Mark: - IBOutlets
     @IBOutlet weak var topicTitleLabel: UILabel!
     @IBOutlet weak var rankingTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,8 @@ class RankingViewController: UIViewController {
         fetchRanking(completion: {
             DispatchQueue.main.async {
                 self.rankingTableView.reloadData()
+                
+                self.activityIndicator.stopAnimating()
             }
         })
     }

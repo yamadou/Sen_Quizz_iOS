@@ -48,7 +48,7 @@ class SubmitQuestionViewController: UIViewController {
         titleLabel.text = topic?.name
         
         submitButton.layer.masksToBounds = true
-        submitButton.layer.cornerRadius = 10
+        submitButton.layer.cornerRadius = 17.5
         submitButton.isEnabled = false
         submitButton.backgroundColor = UIColor.gray
         
